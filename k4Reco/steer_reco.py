@@ -109,7 +109,8 @@ InitDD4hep = MarlinProcessorWrapper("InitDD4hep")
 InitDD4hep.OutputLevel = INFO
 InitDD4hep.ProcessorType = "InitializeDD4hep"
 InitDD4hep.Parameters = {
-    "DD4hepXMLFile": [f"{the_args.code}/detector-simulation/geometries/MAIA_v0/MAIA_v0.xml"],
+    "DD4hepXMLFile": ["/scratch/miralittmann/sim_code/detector-simulation/geometries/MAIA_v0/MAIA_v0.xml"],
+    #"DD4hepXMLFile": ["/code/detector-simulation/geometries/MuColl_10TeV_v0A/MuColl_10TeV_v0A.xml"],
     "EncodingStringParameterName": ["GlobalTrackerReadoutID"]
 }
 
@@ -321,9 +322,9 @@ CKFTracking.Parameters = {
     "CKF_NumMeasurementsCutOff": ["1"],
     "CaloFace_Radius": ["1857"],
     "CaloFace_Z": ["2307"],
-    "MatFile": [os.environ['ACTSTRACKING_DATA']+"/MAIA_v0_material.json"],
+    "MatFile": ["/scratch/miralittmann/sim_code/detector-simulation/geometries/MAIA_v0/MAIA_v0_material.json"],
     "PropagateBackward": ["False"],
-    "DetectorSchema": ["MAIA_v0"],
+    "DetectorSchema": ["/cvmfs/public-uc.osgstorage.org/ospool/uc-shared/public/futurecolliders/BIB10TeV/sim_mp_pruned/MAIA_v0"],
     "RunCKF": ["True"],
     "SeedFinding_CollisionRegion": ["6"],
     #"SeedFinding_DeltaRMax": ["60"],
@@ -352,8 +353,8 @@ CKFTracking.Parameters = {
                       "8", "2",
                       "17", "2",
                       "18", "2"],
-    "TGeoFile": [os.environ['ACTSTRACKING_DATA']+"/MAIA_v0.root"],
-    "TGeoDescFile": [os.environ['ACTSTRACKING_DATA']+"/MAIA_v0.json"],
+    "TGeoFile": ["/scratch/miralittmann/sim_code/ACTSTracking/data/MAIA_v0.root"],
+    "TGeoDescFile": ["/scratch/miralittmann/sim_code/ACTSTracking/data/MAIA_v0.json"],
     "TrackCollectionName": ["AllTracks"],
     "TrackerHitCollectionNames": [f"VBTrackerHits{Coned}", f"IBTrackerHits{Coned}", f"OBTrackerHits{Coned}", f"VETrackerHits{Coned}", f"IETrackerHits{Coned}", f"OETrackerHits{Coned}"]
 }

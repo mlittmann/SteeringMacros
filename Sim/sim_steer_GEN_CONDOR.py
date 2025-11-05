@@ -5,30 +5,29 @@ from g4units import mm, GeV, MeV, m, deg
 SIM = DD4hepSimulation()
 
 # The compact XML file
-SIM.compactFile = "/code/detector-simulation/geometries/MAIA_v0/MAIA_v0.xml"
-#SIM.compactFile = "/code/detector-simulation/geometries/MuColl_10TeV_v0A/MuColl_10TeV_v0A.xml"
-#SIM.compactFile = "/code/detector-simulation/geometries/MuColl_v1/MuColl_v1.xml" # 3 TeV
+SIM.compactFile = "MAIA_v0/MAIA_v0.xml"
+
 # Lorentz boost for the crossing angle, in radian!
-SIM.crossingAngleBoost = 0.
+SIM.crossingAngleBoost = 0.0
 SIM.enableDetailedShowerMode = True
 SIM.enableG4GPS = False
 SIM.enableG4Gun = False
 SIM.enableGun = False
 # InputFiles for simulation .stdhep, .slcio, .HEPEvt, .hepevt, .hepmc files are supported
-SIM.inputFiles = ["/data/hepmc_sbottom/tag_1_pythia8_events.hepmc"]
+
+SIM.inputFiles = ["input.stdhep"]
 # HepMC reader v3 is not supported
 SIM.hepmc3.useHepMC3 = True
 # Macro file to execute for runType 'run' or 'vis'
-SIM.macroFile = []
+SIM.macroFile = ""
 # number of events to simulate, used in batch mode
-SIM.numberOfEvents = 10
+SIM.numberOfEvents = -1
 # Outputfile from the simulation,only lcio output is supported
 # SIM.outputFile = "out/digi/sim_mod1_mumu2H2bb750.slcio"
 SIM.outputFile = "output_sim.slcio"
-# SIM.outputFile = "out/sim_mod1_mcparticles.slcio"
 # Verbosity use integers from 1(most) to 7(least) verbose
 # or strings: VERBOSE, DEBUG, INFO, WARNING, ERROR, FATAL, ALWAYS
-SIM.printLevel = 3
+SIM.printLevel = "INFO"
 # The type of action to do in this invocation
 # batch: just simulate some events, needs numberOfEvents, and input file or gun
 # vis: enable visualisation, run the macroFile if it is set
@@ -217,8 +216,8 @@ SIM.physics.list = "FTFP_BERT_HP"
 
 # location of particle.tbl file containing extra particles and their lifetime information
 ##
-SIM.physics.pdgfile = os.path.join( os.environ.get("DD4HEP"), "DDG4/examples/particle.tbl" )
-#SIM.physics.pdgfile = "/code/GeantExtraPart/x1x1.tbl"
+# SIM.physics.pdgfile = "/scratch/miralittmann/sim_code/sim/tbl_files/4000_10.tbl"
+# SIM.physics.pdgfile = os.path.join( os.environ.get("DD4HEP"), "DDG4/examples/particle.tbl" )
 
 # The global geant4 rangecut for secondary production
 ##
@@ -245,3 +244,7 @@ SIM.random.luxury = 1
 SIM.random.replace_gRandom = True
 SIM.random.seed = None
 SIM.random.type = None
+
+SIM.physics.alternativeDecayStatuses = {22, 23, 51, 52}
+SIM.physics.zeroTimePDGs = {17, 11} # removing 13, 15 from this list
+
